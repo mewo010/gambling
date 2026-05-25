@@ -12,6 +12,11 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GamesWheelRouteImport } from './routes/games.wheel'
+import { Route as GamesRouletteRouteImport } from './routes/games.roulette'
+import { Route as GamesHigherLowerRouteImport } from './routes/games.higher-lower'
+import { Route as GamesCockfightRouteImport } from './routes/games.cockfight'
+import { Route as GamesBlackjackRouteImport } from './routes/games.blackjack'
 
 const LeaderboardRoute = LeaderboardRouteImport.update({
   id: '/leaderboard',
@@ -28,35 +33,105 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GamesWheelRoute = GamesWheelRouteImport.update({
+  id: '/games/wheel',
+  path: '/games/wheel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesRouletteRoute = GamesRouletteRouteImport.update({
+  id: '/games/roulette',
+  path: '/games/roulette',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesHigherLowerRoute = GamesHigherLowerRouteImport.update({
+  id: '/games/higher-lower',
+  path: '/games/higher-lower',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesCockfightRoute = GamesCockfightRouteImport.update({
+  id: '/games/cockfight',
+  path: '/games/cockfight',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesBlackjackRoute = GamesBlackjackRouteImport.update({
+  id: '/games/blackjack',
+  path: '/games/blackjack',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/games/blackjack': typeof GamesBlackjackRoute
+  '/games/cockfight': typeof GamesCockfightRoute
+  '/games/higher-lower': typeof GamesHigherLowerRoute
+  '/games/roulette': typeof GamesRouletteRoute
+  '/games/wheel': typeof GamesWheelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/games/blackjack': typeof GamesBlackjackRoute
+  '/games/cockfight': typeof GamesCockfightRoute
+  '/games/higher-lower': typeof GamesHigherLowerRoute
+  '/games/roulette': typeof GamesRouletteRoute
+  '/games/wheel': typeof GamesWheelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/leaderboard': typeof LeaderboardRoute
+  '/games/blackjack': typeof GamesBlackjackRoute
+  '/games/cockfight': typeof GamesCockfightRoute
+  '/games/higher-lower': typeof GamesHigherLowerRoute
+  '/games/roulette': typeof GamesRouletteRoute
+  '/games/wheel': typeof GamesWheelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/leaderboard'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/leaderboard'
+    | '/games/blackjack'
+    | '/games/cockfight'
+    | '/games/higher-lower'
+    | '/games/roulette'
+    | '/games/wheel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/leaderboard'
-  id: '__root__' | '/' | '/admin' | '/leaderboard'
+  to:
+    | '/'
+    | '/admin'
+    | '/leaderboard'
+    | '/games/blackjack'
+    | '/games/cockfight'
+    | '/games/higher-lower'
+    | '/games/roulette'
+    | '/games/wheel'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/leaderboard'
+    | '/games/blackjack'
+    | '/games/cockfight'
+    | '/games/higher-lower'
+    | '/games/roulette'
+    | '/games/wheel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   LeaderboardRoute: typeof LeaderboardRoute
+  GamesBlackjackRoute: typeof GamesBlackjackRoute
+  GamesCockfightRoute: typeof GamesCockfightRoute
+  GamesHigherLowerRoute: typeof GamesHigherLowerRoute
+  GamesRouletteRoute: typeof GamesRouletteRoute
+  GamesWheelRoute: typeof GamesWheelRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +157,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/games/wheel': {
+      id: '/games/wheel'
+      path: '/games/wheel'
+      fullPath: '/games/wheel'
+      preLoaderRoute: typeof GamesWheelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/roulette': {
+      id: '/games/roulette'
+      path: '/games/roulette'
+      fullPath: '/games/roulette'
+      preLoaderRoute: typeof GamesRouletteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/higher-lower': {
+      id: '/games/higher-lower'
+      path: '/games/higher-lower'
+      fullPath: '/games/higher-lower'
+      preLoaderRoute: typeof GamesHigherLowerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/cockfight': {
+      id: '/games/cockfight'
+      path: '/games/cockfight'
+      fullPath: '/games/cockfight'
+      preLoaderRoute: typeof GamesCockfightRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games/blackjack': {
+      id: '/games/blackjack'
+      path: '/games/blackjack'
+      fullPath: '/games/blackjack'
+      preLoaderRoute: typeof GamesBlackjackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +199,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   LeaderboardRoute: LeaderboardRoute,
+  GamesBlackjackRoute: GamesBlackjackRoute,
+  GamesCockfightRoute: GamesCockfightRoute,
+  GamesHigherLowerRoute: GamesHigherLowerRoute,
+  GamesRouletteRoute: GamesRouletteRoute,
+  GamesWheelRoute: GamesWheelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
